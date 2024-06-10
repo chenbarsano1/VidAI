@@ -1,5 +1,7 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import { Ionicons } from '@expo/vector-icons'
+import { GROUP } from 'nativewind/dist/utils/selector'
 
 const FormField = ({title, value, placeholder, handleChangeText, otherStyles, ...props}) => {
 
@@ -10,7 +12,7 @@ const FormField = ({title, value, placeholder, handleChangeText, otherStyles, ..
       <Text className="text-base text-gray-100 font-pmedium">{title}</Text>
 
       <View className='border-2 border-black-200 w-full h-16 px-4 bg-black-100 rounded-2xl
-       focus:border-secondary items-center'>
+       focus:border-secondary items-center flex-row'>
         <TextInput className='flex-1 text-white font-psemibold text-base'
             value={value}
             placeholder={placeholder}
@@ -18,6 +20,11 @@ const FormField = ({title, value, placeholder, handleChangeText, otherStyles, ..
             onChangeText={handleChangeText}
             secureTextEntry={title === 'Password' && !showPassword}
         />
+        {title === 'Password' && (
+            <TouchableOpacity onPress={() => setshowPassword(!showPassword)}>
+                <Ionicons name={showPassword ? 'eye-off' : 'eye'} size={24} color="gray" />
+            </TouchableOpacity>
+        )}
       </View>
     </View>
   )
