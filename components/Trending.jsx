@@ -34,8 +34,8 @@ const TrendingItem = ({activeItem, item}) => {
             {play ? (
                 <Video 
                     source={{uri: item.video}}
-                    className="w-52 h-72 rounded-[35px] mt-3 bg-white/10"
-                    resizeMode={ResizeMode.CONTAIN}
+                    className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+                    resizeMode={ResizeMode.COVER}
                     useNativeControls
                     shouldPlay
                     onPlaybackStatusUpdate={(status) => {
@@ -43,12 +43,17 @@ const TrendingItem = ({activeItem, item}) => {
                             setPlay(false)
                         }
                     }}
+                    onError={(error) => console.error('Video playback error:', error)}
                 />
             ) : (
-                <TouchableOpacity className="relative justify-center items-center" activeOpacity={0.7} onPress={() => setPlay(true)}>
+                <TouchableOpacity 
+                    className="relative justify-center items-center" 
+                    activeOpacity={0.7} 
+                    onPress={() => setPlay(true)}
+                >
                     <ImageBackground 
                         source={{uri: item.thumbnail}}
-                        className="w-52 h-72 rounded-[35px] my-5 overflow-hidden shadow-lg shadow-black/40"
+                        className="w-52 h-72 rounded-[33px] my-5 overflow-hidden shadow-lg shadow-black/40"
                         resizeMode='cover'
                     />
                     <Image 
@@ -63,7 +68,7 @@ const TrendingItem = ({activeItem, item}) => {
 }
 
 const Trending = ({posts}) => {
-    const [activeItem, setActiveItem] = useState(posts[1])
+    const [activeItem, setActiveItem] = useState(posts[0])
     
     const viewableItemsChanged = ({viewableItems}) => {
         if(viewableItems.length > 0) {
@@ -81,6 +86,7 @@ const Trending = ({posts}) => {
         viewabilityConfig={{itemVisiblePercentThreshold: 70}}
         contentOffset={{x:170}}
         horizontal
+        showsHorizontalScrollIndicator={false}
     />
 
 
