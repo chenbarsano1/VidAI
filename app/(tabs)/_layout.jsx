@@ -2,6 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs, Redirect } from 'expo-router'
 import { icons } from '../../constants'
+import { StatusBar } from 'expo-status-bar'
 
 const TabIcon = ({icon, color, name, focused}) => {
     return (
@@ -50,7 +51,7 @@ const TabsLayout = () => {
                     ),
                 }}
             />
-            <Tabs.Screen 
+            {/* <Tabs.Screen 
                 name='bookmark'
                 options={{
                     title: 'Bookmark',
@@ -64,7 +65,7 @@ const TabsLayout = () => {
                         />
                     ),
                 }}
-            />
+            /> */}
             <Tabs.Screen 
                 name='create'
                 options={{
@@ -96,6 +97,7 @@ const TabsLayout = () => {
                 }}
             />
         </Tabs>
+        <StatusBar backgroundColor='161622' style='light'/>
     </>
   )
 }
